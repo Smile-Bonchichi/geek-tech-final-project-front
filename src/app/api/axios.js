@@ -1,11 +1,8 @@
 import axios from 'axios';
 
-//FIXME узнать api
-export const baseURL = '';
-
 const axiosInstance = axios.create({
     withCredentials: true,
-    baseURL
+    baseURL: 'http://localhost:8080/api/'
 });
 
 axiosInstance.interceptors.response.use(
@@ -17,7 +14,7 @@ axiosInstance.interceptors.response.use(
 axiosInstance.interceptors.request.use(
     async (config) => {
         const accessToken = localStorage.token || '';
-        config.headers.Authorization = `Bearer ${ accessToken }`; // eslint-disable-line no-param-reassign
+        config.headers.Authorization = `Bearer ${ accessToken }`;
         return config;
     },
     (error) => Promise.reject(error)
