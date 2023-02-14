@@ -1,4 +1,4 @@
-type Props = {
+export type Props = {
     fullName: string,
     email: string,
     inn: string,

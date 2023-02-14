@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const axiosInstance = axios.create({
     withCredentials: true,
-    baseURL: 'http://localhost:8080/api/'
+    baseURL: process.env.BACK_URL
 });
 
 axiosInstance.interceptors.response.use(
@@ -16,8 +16,7 @@ axiosInstance.interceptors.request.use(
         const accessToken = localStorage.token || '';
         config.headers.Authorization = `Bearer ${ accessToken }`;
         return config;
-    },
-    (error) => Promise.reject(error)
+    }
 );
 
 export default axiosInstance;
