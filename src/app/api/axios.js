@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const axiosInstance = axios.create({
     withCredentials: true,
-    baseURL: process.env.BACK_URL
+    baseURL: process.env.REACT_APP_BACK_URL
 });
 
 axiosInstance.interceptors.response.use(
@@ -13,8 +13,10 @@ axiosInstance.interceptors.response.use(
 
 axiosInstance.interceptors.request.use(
     async (config) => {
-        const accessToken = localStorage.token || '';
-        config.headers.Authorization = `Bearer ${ accessToken }`;
+        if (!(config.url === '/sign-up' || config.url === '/sign-in')) {
+            const accessToken = localStorage.token || '';
+            config.headers.Authorization = `Bearer ${ accessToken }`;
+        }
         return config;
     }
 );

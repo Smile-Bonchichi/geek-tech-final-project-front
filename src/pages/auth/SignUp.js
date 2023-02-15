@@ -1,75 +1,22 @@
 import React from 'react';
-import { ButtonAuth, Href } from '../../shared/index.js';
+import { ButtonAuth, Href, Success } from '../../ui/index.js';
+import { InputAuthList, TextList } from '../../util/index.js';
 import {
-    ContactPhone, Email, FiberPin, Lock, Person
-} from '@mui/icons-material';
-import Container from '@mui/material/Container';
-import { InputAuthList, TextList } from '../../features/index.js';
+    inputs, textsPreSignUp, textsSuccessSignUp
+} from './constants/index.js';
+import { useDispatch, useSelector } from 'react-redux';
+import { signUp } from './slice/authSlice.js';
+import { Container } from '@mui/material';
 
-export const SignUp = () => {
-    const inputs = [
-        {
-            id: 'name',
-            type: 'TextField',
-            placeholder: 'Name',
-            icon: <Person/>
-        },
-        {
-            id: 'pin',
-            type: 'TextField',
-            placeholder: 'Pin',
-            icon: <FiberPin/>
-        },
-        {
-            id: 'email',
-            type: 'TextField',
-            placeholder: 'Email',
-            icon: <Email/>
-        },
-        {
-            id: 'phone',
-            type: 'TextField',
-            placeholder: 'Phone',
-            icon: <ContactPhone/>
-        },
-        {
-            id: 'password',
-            type: 'Password',
-            placeholder: 'Password',
-            icon: <Lock/>
-        },
-        {
-            id: 'repeat your password',
-            type: 'Password',
-            placeholder: 'Repeat your password',
-            icon: <Lock/>
-        }
-    ];
+const PreSignUp = () => {
+    const dispatch = useDispatch();
     
-    const texts = [
-        {
-            style: {
-                fontFamily: `Gomawo`,
-                fontStyle: `normal`,
-                fontWeight: 400,
-                fontSize: 32,
-                
-                color: `#AA3423`
-            },
-            text: 'Welcome to ' + process.env.PROJECT_NAME
-        },
-        {
-            style: {
-                fontFamily: `Stolzl`,
-                fontStyle: `normal`,
-                fontWeight: 300,
-                fontSize: 18,
-                
-                color: `#000000`
-            },
-            text: 'Register your account'
-        }
-    ];
+    const { registrationModel } = useSelector(state => state.authReducer);
+    const registration = () => {
+        dispatch(
+            signUp(registrationModel)
+        );
+    };
     
     return (
         <Container
@@ -80,7 +27,7 @@ export const SignUp = () => {
                 alignItems: `center`
             } }>
             <TextList
-                textProps={ texts }
+                textProps={ textsPreSignUp }
             />
             
             <InputAuthList
@@ -89,11 +36,9 @@ export const SignUp = () => {
             
             <ButtonAuth
                 style={ {
-                    marginTop: 30,
-                    border: `2px solid #AA3423`,
-                    borderRadius: 5
+                    marginTop: 30, border: `2px solid #AA3423`, borderRadius: 5
                 } }
-                method={ () => { alert('Вошел'); } }
+                method={ registration }
                 text={ 'Sign up' }
                 textStyle={ {
                     fontFamily: `Stolzl`,
@@ -120,5 +65,61 @@ export const SignUp = () => {
                 url={ '/login' }
             />
         </Container>
+    );
+};
+
+const SuccessSignUp = () => {
+    return (
+        <Container
+            style={ {
+                marginTop: 70,
+                display: `flex`,
+                flexDirection: `column`,
+                alignItems: `center`
+            } }>
+            
+            <TextList
+                textProps={ [textsPreSignUp[0]] }
+            />
+            
+            <Success
+                style={ {
+                    marginTop: 60,
+                    marginBottom: 30,
+                    width: 200,
+                    height: 200
+                } }
+            />
+            
+            <TextList
+                textProps={ textsSuccessSignUp }
+            />
+            
+            <ButtonAuth
+                style={ {
+                    marginTop: 30, border: `2px solid #AA3423`, borderRadius: 5
+                } }
+                method={ () => {} }
+                text={ 'Go shopping' }
+                textStyle={ {
+                    fontFamily: `Stolzl`,
+                    fontStyle: `normal`,
+                    fontWeight: 400,
+                    fontSize: 18,
+                    
+                    color: `#AA3423`
+                } }
+            />
+        </Container>
+    );
+};
+
+export const SignUp = () => {
+    const { registrationStatus } = useSelector(state => state.authReducer);
+    
+    return (
+        <>
+            { !registrationStatus ? <PreSignUp/> : <SuccessSignUp/> }
+        </>
     );
 };
