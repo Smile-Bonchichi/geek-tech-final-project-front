@@ -5,13 +5,28 @@ export const signUp = createAsyncThunk(
     'signUp',
     async (data, { dispatch }) => {
         axios.post('/user/auth/sign-up', data).then(() => {
-            console.log('good');
-            
             dispatch(
                 updateRegistrationStatus(true)
             );
+            
+            dispatch(
+                clearRegistrationModel
+            );
         }).catch(err => {
-            console.log(err.response.data);
+            dispatch(
+                setAlert(err.response.data)
+            );
+        });
+    }
+);
+
+export const confirm = createAsyncThunk(
+    'confirm',
+    async (data, { dispatch }) => {
+        axios.get('/user/confirm').then(res => {
+            console.log(res);
+        }).catch(err => {
+            console.log(err);
         });
     }
 );
@@ -40,7 +55,8 @@ const authSlice = createSlice({
             phoneNumber: '',
             password: ''
         },
-        registrationStatus: false
+        registrationStatus: false,
+        alert: false
     },
     reducers: {
         setTokenAndRole: (state, action) => {
@@ -68,9 +84,19 @@ const authSlice = createSlice({
             }
         },
         updateRegistrationStatus: (state, action) => {
-            console.log(action.payload);
-            
             state.registrationStatus = action.payload;
+        },
+        clearRegistrationModel: (state) => {
+            state.registrationModel = {
+                fullName: '',
+                pin: '',
+                email: '',
+                phoneNumber: '',
+                password: ''
+            };
+        },
+        setAlert: (state, action) => {
+            state.alert = action.payload.details;
         }
     }
 });
@@ -78,7 +104,9 @@ const authSlice = createSlice({
 export const {
     setToken,
     setRegistrationModel,
-    updateRegistrationStatus
+    updateRegistrationStatus,
+    clearRegistrationModel,
+    setAlert
 } = authSlice.actions;
 
 export default authSlice.reducer;

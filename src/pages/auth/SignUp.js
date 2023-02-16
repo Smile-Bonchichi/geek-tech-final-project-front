@@ -1,5 +1,5 @@
 import React from 'react';
-import { ButtonAuth, Href, Success } from '../../ui/index.js';
+import { ButtonAuth, Error, Href, Success } from '../../ui/index.js';
 import { InputAuthList, TextList } from '../../util/index.js';
 import {
     inputs, textsPreSignUp, textsSuccessSignUp
@@ -11,7 +11,9 @@ import { Container } from '@mui/material';
 const PreSignUp = () => {
     const dispatch = useDispatch();
     
-    const { registrationModel } = useSelector(state => state.authReducer);
+    const { registrationModel, alert } = useSelector(
+        state => state.authReducer
+    );
     const registration = () => {
         dispatch(
             signUp(registrationModel)
@@ -64,6 +66,11 @@ const PreSignUp = () => {
                 text={ 'Already have an account? Sign in!' }
                 url={ '/login' }
             />
+            {
+                alert ?
+                    <Error text={ alert }/> :
+                    <></>
+            }
         </Container>
     );
 };
