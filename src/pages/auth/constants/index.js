@@ -70,24 +70,14 @@ export const textsPreSignUp = [
 export const textsSuccessSignUp = [
     {
         style: {
+            marginTop: 50,
             fontFamily: `Stolzl`,
             fontStyle: `normal`,
             fontWeight: 400,
-            fontSize: 35,
+            fontSize: 26,
             
-            color: `#4ECB71`
+            color: `#AA3423`
         },
-        text: 'Success!'
-    },
-    {
-        style: {
-            fontFamily: `Stolzl`,
-            fontStyle: `normal`,
-            fontWeight: 300,
-            fontSize: 16,
-            
-            color: `#000000`
-        },
-        text: 'Now you have an account!:)'
+        text: 'Please. Confirm your email!'
     }
 ];

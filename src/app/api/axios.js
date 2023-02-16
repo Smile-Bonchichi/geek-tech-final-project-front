@@ -13,7 +13,7 @@ axiosInstance.interceptors.response.use(
 
 axiosInstance.interceptors.request.use(
     async (config) => {
-        if (!(config.url === '/sign-up' || config.url === '/sign-in')) {
+        if (!(config.url === '/user/auth/sign-up' || config.url === '/user/auth/sign-in')) {
             const accessToken = localStorage.token || '';
             config.headers.Authorization = `Bearer ${ accessToken }`;
         }

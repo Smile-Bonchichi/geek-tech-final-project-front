@@ -23,10 +23,10 @@ export const signUp = createAsyncThunk(
 export const confirm = createAsyncThunk(
     'confirm',
     async (data, { dispatch }) => {
-        axios.get('/user/confirm').then(res => {
-            console.log(res);
-        }).catch(err => {
-            console.log(err);
+        axios.get('/user/confirm').catch(err => {
+            dispatch(
+                setAlert(err.response.data)
+            );
         });
     }
 );

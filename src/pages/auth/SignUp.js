@@ -98,24 +98,23 @@ const SuccessSignUp = () => {
                 } }
             />
             
-            <TextList
-                textProps={ textsSuccessSignUp }
-            />
-            
-            <ButtonAuth
+            <Href
                 style={ {
-                    marginTop: 30, border: `2px solid #AA3423`, borderRadius: 5
-                } }
-                method={ () => {} }
-                text={ 'Go shopping' }
-                textStyle={ {
+                    marginTop: 50,
+                    
                     fontFamily: `Stolzl`,
                     fontStyle: `normal`,
-                    fontWeight: 400,
-                    fontSize: 18,
+                    fontWeight: 300,
+                    fontSize: 16,
                     
-                    color: `#AA3423`
+                    color: `#000000`
                 } }
+                text={ 'Now you have an account!:) Sign in!' }
+                url={ '/login' }
+            />
+            
+            <TextList
+                textProps={ textsSuccessSignUp }
             />
         </Container>
     );
