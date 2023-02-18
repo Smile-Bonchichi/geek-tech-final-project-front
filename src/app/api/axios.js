@@ -8,12 +8,18 @@ const axiosInstance = axios.create({
 axiosInstance.interceptors.response.use(
     async (response) => {
         return await response.data;
+    },
+    async (err) => {
+        throw err;
     }
 );
 
 axiosInstance.interceptors.request.use(
     async (config) => {
-        if (!(config.url === '/user/auth/sign-up' || config.url === '/user/auth/sign-in')) {
+        if (!(
+            config.url === '/user/auth/sign-up' ||
+            config.url === '/user/auth/sign-in')
+        ) {
             const accessToken = localStorage.token || '';
             config.headers.Authorization = `Bearer ${ accessToken }`;
         }

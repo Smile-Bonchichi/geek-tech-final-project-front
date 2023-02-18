@@ -1,19 +1,18 @@
 import {
     ContactPhone, Email, FiberPin, Lock, Person
 } from '@mui/icons-material';
-import React from 'react';
 
-export const inputs = [
+export const inputsPreSignUp = [
     {
         id: 'fullName',
         type: 'TextField',
-        placeholder: 'Full Name',
+        placeholder: 'ФИО',
         icon: <Person/>
     },
     {
         id: 'pin',
         type: 'TextField',
-        placeholder: 'Pin',
+        placeholder: 'ИНН',
         icon: <FiberPin/>
     },
     {
@@ -25,59 +24,60 @@ export const inputs = [
     {
         id: 'phone',
         type: 'TextField',
-        placeholder: 'Phone',
+        placeholder: 'Номер телефона',
         icon: <ContactPhone/>
     },
     {
         id: 'password',
         type: 'Password',
-        placeholder: 'Password',
+        placeholder: 'Пароль',
         icon: <Lock/>
     },
     {
         id: 'repeat your password',
         type: 'Password',
-        placeholder: 'Repeat your password',
+        placeholder: 'Повторите пароль',
         icon: <Lock/>
     }
+];
+
+export const inputsSignIn = [
+    {
+        id: 'email',
+        type: 'TextField',
+        placeholder: 'Email',
+        icon: <Email/>
+    },
+    {
+        id: 'password',
+        type: 'Password',
+        placeholder: 'Пароль',
+        icon: <Lock/>
+    },
 ];
 
 export const textsPreSignUp = [
     {
         style: {
-            fontFamily: `Gomawo`,
+            fontFamily: `Comfortaa`,
             fontStyle: `normal`,
             fontWeight: 400,
             fontSize: 32,
             
-            color: `#AA3423`
+            color: `#392250`
         },
-        text: 'Welcome to ' + process.env.REACT_APP_PROJECT_NAME
+        text: 'Добро пожаловать в ' + process.env.REACT_APP_PROJECT_NAME
     },
     {
         style: {
-            fontFamily: `Stolzl`,
+            marginTop: 10,
+            fontFamily: `Raleway`,
             fontStyle: `normal`,
             fontWeight: 300,
             fontSize: 18,
             
             color: `#000000`
         },
-        text: 'Register your account'
-    }
-];
-
-export const textsSuccessSignUp = [
-    {
-        style: {
-            marginTop: 50,
-            fontFamily: `Stolzl`,
-            fontStyle: `normal`,
-            fontWeight: 400,
-            fontSize: 26,
-            
-            color: `#AA3423`
-        },
-        text: 'Please. Confirm your email!'
+        text: 'Для регистрации заполните поля'
     }
 ];

@@ -1,9 +1,7 @@
 import React from 'react';
-import { ButtonAuth, Error, Href, Success } from '../../ui/index.js';
+import { ButtonAuth, Error, Href, Success, Text } from '../../ui/index.js';
 import { InputAuthList, TextList } from '../../util/index.js';
-import {
-    inputs, textsPreSignUp, textsSuccessSignUp
-} from './constants/index.js';
+import { inputsPreSignUp, textsPreSignUp } from './constants/index.js';
 import { useDispatch, useSelector } from 'react-redux';
 import { signUp } from './slice/authSlice.js';
 import { Container } from '@mui/material';
@@ -33,22 +31,22 @@ const PreSignUp = () => {
             />
             
             <InputAuthList
-                inputProps={ inputs }
+                inputProps={ inputsPreSignUp }
             />
             
             <ButtonAuth
                 style={ {
-                    marginTop: 30, border: `2px solid #AA3423`, borderRadius: 5
+                    marginTop: 30, border: `2px solid #FFCC3D`, borderRadius: 5
                 } }
                 method={ registration }
-                text={ 'Sign up' }
+                text={ 'Зарегистрироваться' }
                 textStyle={ {
                     fontFamily: `Stolzl`,
                     fontStyle: `normal`,
                     fontWeight: 400,
                     fontSize: 18,
                     
-                    color: `#AA3423`
+                    color: `#FFCC3D`
                 } }
             />
             
@@ -63,7 +61,7 @@ const PreSignUp = () => {
                     
                     color: `#000000`
                 } }
-                text={ 'Already have an account? Sign in!' }
+                text={ 'У вас уже есть аккаунт? Логин!' }
                 url={ '/login' }
             />
             {
@@ -85,8 +83,18 @@ const SuccessSignUp = () => {
                 alignItems: `center`
             } }>
             
-            <TextList
-                textProps={ [textsPreSignUp[0]] }
+            <Text
+                style={ {
+                    fontFamily: `Comfortaa`,
+                    fontStyle: `normal`,
+                    fontWeight: 400,
+                    fontSize: 32,
+                    
+                    color: `#392250`
+                } }
+                text={
+                    'Добро пожаловать в ' + process.env.REACT_APP_PROJECT_NAME
+                }
             />
             
             <Success
@@ -113,8 +121,17 @@ const SuccessSignUp = () => {
                 url={ '/login' }
             />
             
-            <TextList
-                textProps={ textsSuccessSignUp }
+            <Text
+                style={ {
+                    marginTop: 50,
+                    fontFamily: `Comfortaa`,
+                    fontStyle: `normal`,
+                    fontWeight: 400,
+                    fontSize: 26,
+                    
+                    color: `#392250`
+                } }
+                text={ 'Пожалуйста. Подтвердите свою почту' }
             />
         </Container>
     );

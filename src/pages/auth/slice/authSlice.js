@@ -13,6 +13,14 @@ export const signUp = createAsyncThunk(
                 clearRegistrationModel
             );
         }).catch(err => {
+            if (err.code === 'ERR_NETWORK') {
+                dispatch(
+                    setAlert(
+                        { details: 'Проблема с сервером. Попробуйте позже!' }
+                    )
+                );
+            }
+            
             dispatch(
                 setAlert(err.response.data)
             );
@@ -35,12 +43,19 @@ export const signIn = createAsyncThunk(
     'signIn',
     async (data, { dispatch }) => {
         axios.post('/user/auth/sign-in', data).then(res => {
-            dispatch(setToken(
-                {
-                    token: res.token,
-                    role: res.role
-                }
-            ));
+            dispatch(
+                setTokenAndRole(
+                    { token: res.result.token, role: res.result.role }
+                )
+            );
+        }).catch(err => {
+            if (err.response.status === 401) {
+                err.response.data.details = 'Не правильные данные';
+            }
+            
+            dispatch(
+                setAlert(err.response.data)
+            );
         });
     }
 );
@@ -96,13 +111,15 @@ const authSlice = createSlice({
             };
         },
         setAlert: (state, action) => {
+            console.log(action.payload.details);
+            
             state.alert = action.payload.details;
         }
     }
 });
 
 export const {
-    setToken,
+    setTokenAndRole,
     setRegistrationModel,
     updateRegistrationStatus,
     clearRegistrationModel,
