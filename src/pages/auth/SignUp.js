@@ -62,7 +62,7 @@ const PreSignUp = () => {
                     color: `#000000`
                 } }
                 text={ 'У вас уже есть аккаунт? Логин!' }
-                url={ '/login' }
+                url={ '/sign-in' }
             />
             {
                 alert ?
@@ -117,7 +117,7 @@ const SuccessSignUp = () => {
                     
                     color: `#000000`
                 } }
-                text={ 'Now you have an account!:) Sign in!' }
+                text={ 'Теперь у вас есть аккаунт!:) Войти!' }
                 url={ '/login' }
             />
             
