@@ -118,7 +118,7 @@ const SuccessSignUp = () => {
                     color: `#000000`
                 } }
                 text={ 'Теперь у вас есть аккаунт!:) Войти!' }
-                url={ '/login' }
+                url={ '/sign-in' }
             />
             
             <Text

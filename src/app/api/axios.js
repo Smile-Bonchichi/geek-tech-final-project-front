@@ -22,6 +22,10 @@ axiosInstance.interceptors.request.use(
         ) {
             const accessToken = localStorage.token || '';
             config.headers.Authorization = `Bearer ${ accessToken }`;
+            
+            if (config.url.startsWith('/image')) {
+                config.headers.ContentType = 'multipart/form-data';
+            }
         }
         return config;
     }

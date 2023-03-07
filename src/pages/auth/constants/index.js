@@ -53,7 +53,7 @@ export const inputsSignIn = [
         type: 'Password',
         placeholder: 'Пароль',
         icon: <Lock/>
-    },
+    }
 ];
 
 export const textsPreSignUp = [

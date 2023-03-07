@@ -2,7 +2,7 @@ import React from 'react';
 import { Fab } from '@mui/material';
 import { Check } from '@mui/icons-material';
 import type { Props } from './props/successType.js';
-import { Text } from '../text/Text.js';
+import { Text } from '../text/Text.jsx';
 
 export const Success = (props: Props) => {
     return (

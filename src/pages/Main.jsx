@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const MainPage = () => {
+export const Main = () => {
     return (
         <>
         </>

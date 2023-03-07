@@ -8,25 +8,19 @@ export const Confirm = () => {
     const navigate = useNavigate();
     const { token } = useParams();
     
-    const confirmEmail = () => {
+    useEffect(() => {
         localStorage.setItem(
             'token',
             token
         );
         
         dispatch(confirm());
-    };
-    
-    useEffect(() => {
-        confirmEmail();
         
         navigate('/sign-in');
-    }, []);
+    }, [dispatch, navigate, token]);
     
     return (
         <>
         </>
     );
 };
-
-export default Confirm;

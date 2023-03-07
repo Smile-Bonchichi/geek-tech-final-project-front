@@ -1,2 +1,2 @@
-export * from './inputAuthList/InputAuthList.js';
-export * from './textList/TextList.js';
+export * from './inputAuthList/InputAuthList.jsx';
+export * from './textList/TextList.jsx';

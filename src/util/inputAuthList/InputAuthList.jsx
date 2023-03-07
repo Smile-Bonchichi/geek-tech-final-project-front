@@ -1,7 +1,7 @@
 import React from 'react';
 import { PropsList } from './props/inputAuthListType.js';
 import { InputAuth } from '../../ui/index.js';
-import { InputPasswordAuth } from '../../ui/input/InputPasswordAuth.js';
+import { InputPasswordAuth } from '../../ui/input/InputPasswordAuth.jsx';
 
 export const InputAuthList = (props: PropsList) => {
     return (

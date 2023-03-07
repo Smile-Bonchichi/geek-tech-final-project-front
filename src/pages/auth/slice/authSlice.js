@@ -42,12 +42,14 @@ export const confirm = createAsyncThunk(
 export const signIn = createAsyncThunk(
     'signIn',
     async (data, { dispatch }) => {
-        axios.post('/user/auth/sign-in', data).then(res => {
-            dispatch(
+        axios.post('/user/auth/sign-in', data.body).then(async res => {
+            await dispatch(
                 setTokenAndRole(
                     { token: res.result.token, role: res.result.role }
                 )
             );
+    
+            data.navigate('/profile');
         }).catch(err => {
             if (err.response.status === 401) {
                 err.response.data.details = 'Не правильные данные';
@@ -111,8 +113,6 @@ const authSlice = createSlice({
             };
         },
         setAlert: (state, action) => {
-            console.log(action.payload.details);
-            
             state.alert = action.payload.details;
         }
     }

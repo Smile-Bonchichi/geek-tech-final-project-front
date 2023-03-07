@@ -5,16 +5,18 @@ import { InputAuthList } from '../../util/index.js';
 import { inputsSignIn } from './constants/index.js';
 import { useDispatch, useSelector } from 'react-redux';
 import { signIn } from './slice/authSlice.js';
+import { useNavigate } from 'react-router-dom';
 
 export const SingIn = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     
     const { registrationModel, alert } = useSelector(
         state => state.authReducer
     );
     const login = () => {
         dispatch(
-            signIn(registrationModel)
+            signIn({ body: registrationModel, navigate: navigate })
         );
     };
     
@@ -73,8 +75,8 @@ export const SingIn = () => {
                     
                     color: `#000000`
                 } }
-                text={ 'Забыли пароль?' }
-                url={ '/login' }
+                text={ 'Нет аккаунта? Регайся' }
+                url={ '/sign-up' }
             />
             {
                 alert ?
